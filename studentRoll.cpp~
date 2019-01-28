@@ -8,17 +8,19 @@ StudentRoll::StudentRoll() {
 
 void StudentRoll::insertAtTail(const Student &s) {
   if(head==NULL) {
-    head = new Node;
-    tail = head;
-    head->s = new Student(s);
-    head->next = NULL;
+    Node *temp = new Node;
+    temp->s=new Student(s);
+    temp->next=NULL;
+    head=temp;
+    tail=temp;
+    temp=NULL;
   }
   
   else {
-    tail->next = new Node;
-    tail->next->s = new Student(s);
-    tail->next->next = NULL;
-    tail = tail->next;
+    Node *temp = new Node;
+    temp->s=new Student(s);
+    tail->next->next=NULL;
+    tail=tail->next; 
   }
 }
 
@@ -29,14 +31,13 @@ std::string StudentRoll::toString() const {
     return studentRollString = "[]";
   }
   while(temp != NULL){
-    studentRollString += temp->s->toString();
-    if (temp->next != NULL) {
-       studentRollString += ",";
-    }
+    std::string studentName = (temp->s)->getName();
+    studentRollString += studentName;
+    studentRollString += ",";
     temp = temp->next;
   }
   studentRollString += "]";
-  return studentRollString;
+  return studentRollString; 
 }
 
 StudentRoll::StudentRoll(const StudentRoll &orig) {
@@ -51,10 +52,9 @@ StudentRoll::StudentRoll(const StudentRoll &orig) {
 
 StudentRoll::~StudentRoll() {
   Node *pointer = head;
-  while (pointer != NULL) {
+  while (pointer !=NULL) {
     Node *nextNode = pointer->next;
-    delete pointer->s;
-    delete pointer;
+    delete pointer->next;
     pointer = nextNode;
   }
   head=tail=NULL;
