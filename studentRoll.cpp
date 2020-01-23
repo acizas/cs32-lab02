@@ -2,10 +2,12 @@
 #include "studentRoll.h"
 #include "student.h"
 
+// Constructor of Linked List
 StudentRoll::StudentRoll() {
   head = tail = NULL;
 }
 
+// Adds new node to linked list 
 void StudentRoll::insertAtTail(const Student &s) {
   if(head==NULL) {
     head = new Node;
@@ -22,12 +24,14 @@ void StudentRoll::insertAtTail(const Student &s) {
   }
 }
 
+// Outputs the linked list as a string
 std::string StudentRoll::toString() const {
   std::string studentRollString = "[";
   Node *temp = head;
   if (head == NULL) {
     return studentRollString = "[]";
   }
+  
   while(temp != NULL){
     studentRollString += temp->s->toString();
     if (temp->next != NULL) {
@@ -35,10 +39,13 @@ std::string StudentRoll::toString() const {
     }
     temp = temp->next;
   }
+  
   studentRollString += "]";
   return studentRollString;
+  
 }
 
+// Copies one linked list and creates another
 StudentRoll::StudentRoll(const StudentRoll &orig) {
 
   head = tail = NULL;
@@ -49,6 +56,7 @@ StudentRoll::StudentRoll(const StudentRoll &orig) {
   }
 }
 
+// Destructor of Linked List
 StudentRoll::~StudentRoll() {
   Node *pointer = head;
   while (pointer != NULL) {
@@ -60,47 +68,18 @@ StudentRoll::~StudentRoll() {
   head=tail=NULL;
 }
 
+// Overloaded Copy Constructor of Linked List
 StudentRoll & StudentRoll::operator =(const StudentRoll &right) {
-  // The next two lines are standard, and you should keep them.
-  // They avoid problems with self-assignment where you might free up 
-  // memory before you copy from it.  (e.g. x = x)
 
   if (&right == this) 
     return (*this);
-
-  // TODO... Here is where there is code missing that you need to 
-  // fill in...
 
   StudentRoll equivalentRoll(right);
   using std::swap;
   swap(this->head, equivalentRoll.head);
   swap(this->tail, equivalentRoll.tail);
-  
-  /* Node *listCopy, *nextNode;
-  listCopy = head;
-  nextNode = NULL;
-  while(listCopy){
-    nextNode = listCopy->next;
-    delete listCopy;
-    listCopy = nextNode;
-  }
-  Node *current = new Node;
-  current = right.head;
-  current->next = NULL;
-
-  temp = right.head->next;
-  while (temp) {
-    current->next = new Node;
-    current->next = temp;
-    current = current->next;
-    current->next = NULL;
-    temp = right.head->next;
-  }
-
-  */
-  
-  // KEEP THE CODE BELOW THIS LINE
-  // Overloaded = should end with this line, despite what the textbook says.
+ 
   return (*this); 
   
 }
+

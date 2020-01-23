@@ -2,61 +2,57 @@
 #include <string>
 #include <cstring>
 
+// Constructor of Student
 Student::Student(const char * const name, int perm) {
   this->name = new char[strlen(name)+1];
   strcpy(this->name,name);
   this->setPerm(perm);
 }
 
+// Returns Perm Number
 int Student::getPerm() const {
   return perm;
 }
 
+// Returns Name
 const char * const Student::getName() const {
   return name;
 }
 
+// Sets Perm Number to Input
 void Student::setPerm(const int permNumber) {
   perm = permNumber;
   return;
 }
 
+// Sets Name to Input
 void Student::setName(const char * const name) {
-  /* if (this->name != NULL)
-    delete[] this->name;
-    */
+ 
   strcpy(this->name, name);
+  
 }
 
-
+// Copy Copy Constructor of Student
 Student::Student(const Student &orig) {
+  
   this->name = new char[strlen(orig.getName())+1];
   strcpy(this->name,orig.getName());
   this->setPerm(orig.getPerm());
-  /*
-  this->setName(orig.getName());
-  this->setPerm(orig.getPerm());
-  */
+  
 }
 
+// Destructor of Student
 Student::~Student() {
-  delete [] name;
+  
+  delete[] name;
+
 }
 
+// Overloaded Copy Constructor of Student
 Student & Student::operator=(const Student &right) {
-  // The next two lines are standard, and you should keep them.
-  // They avoid problems with self-assignment where you might free up 
-  // memory before you copy from it.  (e.g. x = x)
 
   if (&right == this) 
     return (*this);
-
-  // TODO... Here is where there is code missing that you need to 
-  // fill in...
-
-
-  // KEEP THE CODE BELOW THIS LINE
-  // Overloaded = should end with this line, despite what the textbook says.
 
   this->setName(right.getName());
   this->setPerm(right.getPerm());
@@ -65,8 +61,10 @@ Student & Student::operator=(const Student &right) {
 
 }
 
+// Outputs Student Name and Perm Number to String
 std::string Student::toString() const {
   std::string myName = getName();
   std::string myPerm = std::to_string(getPerm());
   return "[" + myName + "," + myPerm + "]";
 }
+

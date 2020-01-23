@@ -7,13 +7,13 @@
 class StudentRoll {
 
  public:
-  StudentRoll();
-  void insertAtTail(const Student &s);
-  std::string toString() const;
+  StudentRoll();                                      // Constructor
+  void insertAtTail(const Student &s);                // Add a New Student
+  std::string toString() const;                       // Outputs Students as a String
 
-  StudentRoll(const StudentRoll &orig);
-  ~StudentRoll();
-  StudentRoll & operator=(const StudentRoll &right);
+  StudentRoll(const StudentRoll &orig);               // Copy Constructor
+  ~StudentRoll();                                     // Destructor
+  StudentRoll & operator=(const StudentRoll &right);  // Overloaded Copy Constructor
 
  private:
   struct Node {
